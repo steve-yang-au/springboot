@@ -1,2 +1,6 @@
 server:
   port: 8888
+Spring:
+  jackson:
+    date-format: "yyyy-MM-dd HH:mm:ss"
+    time-zone: "GMT+10"
