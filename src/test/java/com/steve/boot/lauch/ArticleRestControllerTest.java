@@ -4,22 +4,37 @@ import com.steve.boot.lauch.controller.ArticleController;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-@Slf4j
-public class ArticleRestControllerTest {
-    private static MockMvc mockMvc;
+//these two annotation is offered by Spring framework
+@SpringBootTest
+@AutoConfigureMockMvc
 
-    @BeforeAll
+//offered by Junit
+@ExtendWith(SpringExtension.class)
+
+//offered by Lombok
+@Slf4j
+
+public class ArticleRestControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    /*@BeforeAll
     static void setUp(){
         mockMvc = MockMvcBuilders.standaloneSetup(new ArticleController()).build();
-    }
+    }*/
 
     @Test
     public void saveArticle() throws Exception {
