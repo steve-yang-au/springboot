@@ -14,7 +14,7 @@ import java.util.Date;
 @RequestMapping("/restful")
 public class ArticleController {
 
-    @Resource
+    //@Resource
     private ArticleService articleService;
 
     @GetMapping("/articles/{id}")
