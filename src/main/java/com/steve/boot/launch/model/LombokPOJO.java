@@ -1,4 +1,4 @@
-package com.steve.boot.lauch.model;
+package com.steve.boot.launch.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

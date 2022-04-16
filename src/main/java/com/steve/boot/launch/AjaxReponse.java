@@ -1,4 +1,4 @@
-package com.steve.boot.lauch;
+package com.steve.boot.launch;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import io.swagger.v3.oas.annotations.media.Schema;

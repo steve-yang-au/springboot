@@ -1,4 +1,4 @@
-package com.steve.boot.lauch.config;
+package com.steve.boot.launch.config;
 
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;

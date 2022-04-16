@@ -1,8 +1,8 @@
-package com.steve.boot.lauch;
+package com.steve.boot.launch;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.steve.boot.lauch.model.Article;
-import com.steve.boot.lauch.model.Reader;
+import com.steve.boot.launch.model.Article;
+import com.steve.boot.launch.model.Reader;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

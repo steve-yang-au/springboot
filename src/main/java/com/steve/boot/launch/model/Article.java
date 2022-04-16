@@ -1,4 +1,4 @@
-package com.steve.boot.lauch.model;
+package com.steve.boot.launch.model;
 
 import com.fasterxml.jackson.annotation.*;
 import io.swagger.v3.oas.annotations.media.Schema;

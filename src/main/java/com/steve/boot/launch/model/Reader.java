@@ -1,4 +1,4 @@
-package com.steve.boot.lauch.model;
+package com.steve.boot.launch.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

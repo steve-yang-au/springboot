@@ -1,7 +1,7 @@
-package com.steve.boot.lauch.controller;
+package com.steve.boot.launch.controller;
 
-import com.steve.boot.lauch.AjaxReponse;
-import com.steve.boot.lauch.model.Article;
+import com.steve.boot.launch.AjaxReponse;
+import com.steve.boot.launch.model.Article;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
