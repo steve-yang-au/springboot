@@ -5,3 +5,7 @@ spring:
   jackson:
     date-format: "yyyy-MM-dd HH:mm:ss"
     time-zone: "GMT+10"
+
+jasypt:
+  encryptor:
+    password: 1234567
