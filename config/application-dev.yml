@@ -1,0 +1,7 @@
+#server:
+#  port: 5888
+
+# the highest priority configuration is
+# giving a location like things below:
+#
+# java -jar ./boot-launch-1.0.jar --spring.config.location=D:/application-prod.yml
