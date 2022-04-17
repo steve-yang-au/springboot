@@ -46,6 +46,13 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>1.6.7</version>
         </dependency>
+
+        <!--for beans validation, the recommended version was already declared in its parent module, which is 6.2.3.Final -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
