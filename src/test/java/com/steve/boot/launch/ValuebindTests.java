@@ -1,5 +1,6 @@
 package com.steve.boot.launch;
 
+import com.steve.boot.launch.model.Employee;
 import com.steve.boot.launch.model.Family;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,12 +14,17 @@ import javax.annotation.Resource;
 public class ValuebindTests {
 
     @Resource
-    Family family;
+    private Family family;
 
+    @Resource
+    private Employee employee;
     @Test
     public void valueBindTest(){
         System.out.println(family);
     }
 
-
+    @Test
+    public void spelExpTest(){
+        System.out.println(employee);
+    }
 }
