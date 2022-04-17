@@ -5,21 +5,3 @@ spring:
   jackson:
     date-format: "yyyy-MM-dd HH:mm:ss"
     time-zone: "GMT+10"
-
-family:
-  family-name: "happy family"
-  father:
-    name: steve
-    age: 21
-  mother:
-    alias:
-      - lovely
-      - ailice
-  child:
-    name: ${family.father.name:steve2}
-    age: 5
-    friends:
-      - hobby: football
-        sex: male
-      - hobby: basketball
-        sex: female
