@@ -2,6 +2,8 @@ package com.steve.boot.launch.service;
 
 import com.steve.boot.launch.dao.ArticleJDBCDAO;
 import com.steve.boot.launch.model.Article;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,14 +17,23 @@ public class ArticleServiceJDBCImpl implements ArticleService{
     @Resource
     private ArticleJDBCDAO articleJDBCDAO;
 
+    @Resource
+    @Qualifier("primaryJdbcTemplate")
+    private JdbcTemplate primaryJdbcTemplate;
+
+    @Resource
+    @Qualifier("secondaryJdbcTemplate")
+    private JdbcTemplate secondaryJdbcTemplate;
+
     @Override
     public void saveArticle(Article article) {
-        articleJDBCDAO.saveArticle(article);
+        articleJDBCDAO.saveArticle(article,primaryJdbcTemplate);
+        articleJDBCDAO.saveArticle(article,secondaryJdbcTemplate);
     }
 
     @Override
     public void deleteArticle(Long id) {
-        articleJDBCDAO.deleteById(id);
+        articleJDBCDAO.deleteById(id,null);
     }
 
     @Override
@@ -32,19 +43,19 @@ public class ArticleServiceJDBCImpl implements ArticleService{
             //TODO throw a exception defined by ourselves
         }
         //articleJDBCDAO.updateById(article);
-        articleJDBCDAO.deleteById(article.getId());
-        articleJDBCDAO.saveArticle(article);
+        articleJDBCDAO.deleteById(article.getId(),null);
+        articleJDBCDAO.saveArticle(article,null);
         int i = 10/0;
 
     }
 
     @Override
     public Article getArticle(Long id) {
-        return articleJDBCDAO.findById(id);
+        return articleJDBCDAO.findById(id,null);
     }
 
     @Override
     public List<Article> getAll() {
-        return articleJDBCDAO.findAll();
+        return articleJDBCDAO.findAll(null);
     }
 }
