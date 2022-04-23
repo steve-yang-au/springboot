@@ -2,7 +2,7 @@ package com.steve.boot.launch.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -13,17 +13,29 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceConfig {
 
+//    @Primary
+//    @Bean("db1DataSource")
+//    @ConfigurationProperties(prefix = "spring.datasource.db1")
+//    public DataSource db1DataSource(){
+//        return DataSourceBuilder.create().build();
+//    }
+//
+//    @Bean("db2DataSource")
+//    @ConfigurationProperties(prefix = "spring.datasource.db2")
+//    public DataSource db2DataSource(){
+//        return DataSourceBuilder.create().build();
+//    }
     @Primary
-    @Bean("db1DataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.db1")
+    @Bean(name="db1DataSource", initMethod = "init", destroyMethod = "close")
+    @ConfigurationProperties(prefix = "atomikos.datasource.db1")
     public DataSource db1DataSource(){
-        return DataSourceBuilder.create().build();
+        return new AtomikosDataSourceBean();
     }
 
-    @Bean("db2DataSource")
-    @ConfigurationProperties(prefix = "spring.datasource.db2")
+    @Bean(name="db2DataSource", initMethod = "init", destroyMethod = "close")
+    @ConfigurationProperties(prefix = "atomikos.datasource.db2")
     public DataSource db2DataSource(){
-        return DataSourceBuilder.create().build();
+        return new AtomikosDataSourceBean();
     }
 
     @Primary

@@ -26,9 +26,11 @@ public class ArticleServiceJDBCImpl implements ArticleService{
     private JdbcTemplate secondaryJdbcTemplate;
 
     @Override
+    @Transactional
     public void saveArticle(Article article) {
         articleJDBCDAO.saveArticle(article,primaryJdbcTemplate);
         articleJDBCDAO.saveArticle(article,secondaryJdbcTemplate);
+        //int i = 10/0;
     }
 
     @Override
