@@ -24,6 +24,15 @@ spring:
     database: mysql
     show-sql: true
 
+  jta:
+    atomikos:
+      datasource:
+        max-pool-size: 20
+        borrow-connection-timeout: 60
+      connectionfactory:
+        max-pool-size: 20
+        borrow-connection-timeout: 60
+
 jasypt:
   encryptor:
     password: 1234567

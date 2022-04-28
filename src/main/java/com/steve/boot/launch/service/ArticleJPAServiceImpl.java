@@ -3,6 +3,8 @@ package com.steve.boot.launch.service;
 import com.github.dozermapper.core.Mapper;
 import com.steve.boot.launch.dao.db1.Article;
 import com.steve.boot.launch.dao.db1.ArticleRepository;
+import com.steve.boot.launch.dao.db2.Message;
+import com.steve.boot.launch.dao.db2.MessageRepository;
 import com.steve.boot.launch.model.ArticleVO;
 import com.steve.boot.launch.utils.DozerUtils;
 import org.springframework.beans.BeanUtils;
@@ -21,12 +23,17 @@ public class ArticleJPAServiceImpl implements ArticleService{
     private ArticleRepository articleRepository;
 
     @Resource
+    private MessageRepository messageRepository;
+
+    @Resource
     private Mapper dozerMapper;
 
     @Override
     public void saveArticle(ArticleVO articleVO) {
         Article article = dozerMapper.map(articleVO, Article.class);
         articleRepository.save(article);
+        messageRepository.save(new Message(1L,"Steve","12", null,null));
+        //int a= 1/0;
     }
 
     @Override

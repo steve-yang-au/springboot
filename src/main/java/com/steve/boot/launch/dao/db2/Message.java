@@ -12,8 +12,8 @@ import java.util.Date;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "message")
 @EntityListeners(AuditingEntityListener.class)
