@@ -1,8 +1,8 @@
 package com.steve.boot.launch.service;
 
 import com.github.dozermapper.core.Mapper;
-import com.steve.boot.launch.dao.ArticleRepository;
-import com.steve.boot.launch.model.Article;
+import com.steve.boot.launch.dao.db1.Article;
+import com.steve.boot.launch.dao.db1.ArticleRepository;
 import com.steve.boot.launch.model.ArticleVO;
 import com.steve.boot.launch.utils.DozerUtils;
 import org.springframework.beans.BeanUtils;

@@ -6,14 +6,21 @@ spring:
     date-format: "yyyy-MM-dd HH:mm:ss"
     time-zone: "GMT+10"
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db1
-    username: root
-    password: 123456
+    db1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/db1
+      username: root
+      password: 123456
+    db2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/db2
+      username: root
+      password: 123456
+
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
     database: mysql
     show-sql: true
 
