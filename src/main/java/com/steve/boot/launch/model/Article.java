@@ -1,12 +1,18 @@
 package com.steve.boot.launch.model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -14,16 +20,27 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@Schema(description = "data structure of an article ")
+@Entity
+@Table(name = "article")
 public class Article {
-    @JsonIgnore
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true, length = 32)
     private String title;
+
+    @Column(nullable = false, length = 512)
     private String content;
-    @JsonProperty("auther")
+
+    @Column(nullable = false, length = 32)
     private String author;
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss", timezone = "GMT+10")
+
+    @Column(nullable = false)
+    @CreatedDate
     private Date createTime;
-    private List<Reader> readers;
+
+    @Column
+    @LastModifiedDate
+    private Date updateTime;
 }
