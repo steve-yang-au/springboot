@@ -8,6 +8,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -25,15 +26,10 @@ import javax.sql.DataSource;
 )
 public class MybatisDb2Config {
 
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.db2")
-    public DataSourceProperties db2DataSourceOneProperties() {
-        return new DataSourceProperties();
-    }
-
-    @Bean
-    public DataSource db2DataSource(@Qualifier("db2DataSourceOneProperties") DataSourceProperties properties){
-        return properties.initializeDataSourceBuilder().type(HikariDataSource.class).build();
+    @Bean(name="db2DataSource", initMethod = "init", destroyMethod = "close")
+    @ConfigurationProperties(prefix = "atomikos.datasource.db2")
+    public DataSource db2DataSource(){
+        return new AtomikosDataSourceBean();
     }
 
     @Bean
@@ -43,15 +39,10 @@ public class MybatisDb2Config {
         sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/db2/*.xml"));
         return sqlSessionFactoryBean.getObject();
     }
-    @Primary
+
     @Bean("sqlSessionTemplateSecondary")
     SqlSessionTemplate sqlSessionTemplateSecondary(@Qualifier("sqlSessionFactorySecondary") SqlSessionFactory sqlSessionFactory){
         return new SqlSessionTemplate(sqlSessionFactory);
-    }
-
-    @Bean("transactionManagerSecondary")
-    public DataSourceTransactionManager dataSourceTransactionManager(@Qualifier("db2DataSource") DataSource dataSource ){
-        return new DataSourceTransactionManager(dataSource);
     }
 
 }

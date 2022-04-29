@@ -9,6 +9,7 @@ import com.steve.boot.launch.model.ArticleVO;
 import com.steve.boot.launch.utils.DozerUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -28,12 +29,14 @@ public class ArticleServiceImpl implements ArticleService{
 
 
     @Override
+    @Transactional
     public void saveArticle(ArticleVO articleVO) {
         Article article = dozerMapper.map(articleVO, Article.class);
         article.setCreateTime(new Date());
         article.setUpdateTime(new Date());
         articleMapper.saveArticle(article);
         messageMapper.saveMessage(new Message(null, "ness", "condds", new Date(), new Date()));
+        int i = 1/0;
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -24,15 +25,11 @@ import javax.sql.DataSource;
 
 )
 public class MybatisDb1Config {
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.db1")
-    public DataSourceProperties db1DataSourceOneProperties() {
-        return new DataSourceProperties();
-    }
-
-    @Bean
-    public DataSource db1DataSource(@Qualifier("db1DataSourceOneProperties") DataSourceProperties properties){
-        return properties.initializeDataSourceBuilder().type(HikariDataSource.class).build();
+    @Primary
+    @Bean(name="db1DataSource", initMethod = "init", destroyMethod = "close")
+    @ConfigurationProperties(prefix = "atomikos.datasource.db1")
+    public DataSource db1DataSource(){
+        return new AtomikosDataSourceBean();
     }
     @Primary
     @Bean
@@ -47,11 +44,4 @@ public class MybatisDb1Config {
     SqlSessionTemplate sqlSessionTemplatePrimary(@Qualifier("sqlSessionFactoryPrimary") SqlSessionFactory sqlSessionFactory){
         return new SqlSessionTemplate(sqlSessionFactory);
     }
-
-    @Primary
-    @Bean("transactionManagerPrimary")
-    public DataSourceTransactionManager dataSourceTransactionManager(@Qualifier("db1DataSource") DataSource dataSource ){
-        return new DataSourceTransactionManager(dataSource);
-    }
-
 }

@@ -5,17 +5,6 @@ spring:
   jackson:
     date-format: "yyyy-MM-dd HH:mm:ss"
     time-zone: "GMT+10"
-  datasource:
-    db1:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/db1
-      username: root
-      password: 123456
-    db2:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/db2
-      username: root
-      password: 123456
 
 mybatis:
   configuration:
@@ -28,3 +17,30 @@ logging:
 jasypt:
   encryptor:
     password: 1234567
+
+atomikos:
+  datasource:
+    db1:
+      unique-resource-name: db1
+      xa-data-source-class-name: com.mysql.cj.jdbc.MysqlXADataSource
+      xa-properties:
+        url: jdbc:mysql://localhost:3306/db1
+        user: root
+        password: 123456
+      exclusive-connection-mode: true
+      max-pool-size: 10
+      min-pool-size: 3
+      testQuery: SELECT 1 FROM dual # because of the using of HikiriCP, it is for checking if the connection is alive
+
+    db2:
+      unique-resource-name: db2
+      xa-data-source-class-name: com.mysql.cj.jdbc.MysqlXADataSource
+      xa-properties:
+        url: jdbc:mysql://localhost:3306/db2
+        user: root
+        password: 123456
+      exclusive-connection-mode: true
+      max-pool-size: 10
+      min-pool-size: 3
+      testQuery: SELECT 1 FROM dual # because of the using of HikiriCP, it is for checking if the connection is alive
+
