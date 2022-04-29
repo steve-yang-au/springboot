@@ -21,4 +21,12 @@ public class OpenAPIConfig {
                 .pathsToMatch("/hello/**")
                 .build();
     }
+
+    @Bean
+    public GroupedOpenApi articlesApi(){
+        return GroupedOpenApi.builder()
+                .group("zzs")
+                .pathsToMatch("/zzs/**")
+                .build();
+    }
 }
