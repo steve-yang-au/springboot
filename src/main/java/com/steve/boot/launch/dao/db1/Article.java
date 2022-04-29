@@ -36,7 +36,7 @@ public class Article {
     @CreatedDate
     private Date createTime;
 
-    @Column
+    @Column(nullable = false)
     @LastModifiedDate
     private Date updateTime;
 }
