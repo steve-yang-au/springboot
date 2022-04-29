@@ -1,8 +1,10 @@
 package com.steve.boot.launch.service;
 
 import com.github.dozermapper.core.Mapper;
-import com.steve.boot.launch.mapper.Article;
-import com.steve.boot.launch.mapper.ArticleMapper;
+import com.steve.boot.launch.mapper.db1.Article;
+import com.steve.boot.launch.mapper.db1.ArticleMapper;
+import com.steve.boot.launch.mapper.db2.Message;
+import com.steve.boot.launch.mapper.db2.MessageMapper;
 import com.steve.boot.launch.model.ArticleVO;
 import com.steve.boot.launch.utils.DozerUtils;
 import org.springframework.beans.BeanUtils;
@@ -19,6 +21,9 @@ public class ArticleServiceImpl implements ArticleService{
     ArticleMapper articleMapper;
 
     @Resource
+    MessageMapper messageMapper;
+
+    @Resource
     private Mapper dozerMapper;
 
 
@@ -26,7 +31,9 @@ public class ArticleServiceImpl implements ArticleService{
     public void saveArticle(ArticleVO articleVO) {
         Article article = dozerMapper.map(articleVO, Article.class);
         article.setCreateTime(new Date());
+        article.setUpdateTime(new Date());
         articleMapper.saveArticle(article);
+        messageMapper.saveMessage(new Message(null, "ness", "condds", new Date(), new Date()));
     }
 
     @Override

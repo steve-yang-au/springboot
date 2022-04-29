@@ -1,7 +1,7 @@
 package com.steve.boot.launch;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.steve.boot.launch.mapper.Article;
+import com.steve.boot.launch.mapper.db1.Article;
 import com.steve.boot.launch.model.Reader;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,6 @@ public class JacksonTest {
                 .content("testing for Jackson")
                 .author("Joss")
                 .createTime(new Date())
-                .readers(list)
                 .build();
 
         ObjectMapper mapper = new ObjectMapper();

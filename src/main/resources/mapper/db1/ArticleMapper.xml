@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steve.boot.launch.mapper.db1.ArticleMapper">
+    <insert
+            id="saveArticle"
+            parameterType="com.steve.boot.launch.mapper.db1.Article"
+            flushCache="true"
+            statementType="PREPARED"
+            keyProperty="id"
+            keyColumn="id"
+            useGeneratedKeys="true"
+            timeout="20">
+        insert into Article (id,title,content,author,create_time,update_time)
+        values (#{id},#{title},#{content},#{author},#{createTime},#{updateTime})
+    </insert>
+
+    <update
+            id="updateArticle"
+            parameterType="com.steve.boot.launch.mapper.db1.Article"
+            flushCache="true"
+            statementType="PREPARED"
+            timeout="20">
+        update Article set
+                           title = #{title},
+                           content = #{content},
+                           author = #{author},
+                           create_time = #{createTime},
+                           update_time = #{updateTime}
+        where id = #{id}
+    </update>
+    <delete
+            id="deleteArticle"
+            parameterType="long"
+            flushCache="true"
+            statementType="PREPARED"
+            timeout="20">
+        delete from Article where id = #{id}
+    </delete>
+
+    <select
+            id="getArticle"
+            parameterType="java.lang.Long"
+            flushCache="true"
+            useCache="true"
+            timeout="10"
+            fetchSize="256"
+            statementType="PREPARED"
+            resultType="com.steve.boot.launch.mapper.db1.Article">
+        select id,title,content,author,create_time,update_time from Article
+        where id = #{id}
+    </select>
+
+    <select
+            id="getAll"
+            parameterType="long"
+            flushCache="true"
+            useCache="true"
+            timeout="10"
+            fetchSize="256"
+            statementType="PREPARED"
+            resultType="com.steve.boot.launch.mapper.db1.Article">
+        select id,title,content,author,create_time,update_time from Article
+    </select>
+
+</mapper>

@@ -1,13 +1,9 @@
-package com.steve.boot.launch.mapper;
+package com.steve.boot.launch.mapper.db1;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,7 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "article")
-@EntityListeners(AuditingEntityListener.class)
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +28,8 @@ public class Article {
     private String author;
 
     @Column(nullable = false)
-    @CreatedDate
     private Date createTime;
 
     @Column
-    @LastModifiedDate
     private Date updateTime;
 }
