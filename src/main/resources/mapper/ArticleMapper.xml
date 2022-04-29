@@ -47,7 +47,7 @@
             fetchSize="256"
             statementType="PREPARED"
             resultType="com.steve.boot.launch.mapper.Article">
-        select id,title,content,author,create_time createTime,update_time updateTime from Article
+        select id,title,content,author,create_time,update_time from Article
         where id = #{id}
     </select>
 
@@ -60,7 +60,7 @@
             fetchSize="256"
             statementType="PREPARED"
             resultType="com.steve.boot.launch.mapper.Article">
-        select id,title,content,author,create_time createTime,update_time updateTime from Article
+        select id,title,content,author,create_time,update_time from Article
     </select>
 
 </mapper>
