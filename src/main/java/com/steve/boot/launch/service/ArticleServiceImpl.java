@@ -1,6 +1,8 @@
 package com.steve.boot.launch.service;
 
 import com.github.dozermapper.core.Mapper;
+import com.steve.boot.launch.exception.CustomException;
+import com.steve.boot.launch.exception.CustomExceptionType;
 import com.steve.boot.launch.mapper.Article;
 import com.steve.boot.launch.mapper.ArticleMapper;
 import com.steve.boot.launch.model.ArticleVO;
@@ -41,7 +43,7 @@ public class ArticleServiceImpl implements ArticleService{
     public void updateArticle(ArticleVO articleVO) {
         Article article = articleMapper.getArticle(articleVO.getId());
         if(article == null) {
-            //TODO throw custom exception
+            throw new CustomException(CustomExceptionType.USER_INPUT_ERROR, "there is no article id for update");
         }
         Article a = new Article();
         //dozerMapper.map(source, destination);
