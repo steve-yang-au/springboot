@@ -1,5 +1,8 @@
 package com.steve.boot.launch.controller;
 
+import com.steve.boot.launch.exception.CustomException;
+import com.steve.boot.launch.exception.CustomExceptionType;
+import com.steve.boot.launch.exception.ModelView;
 import com.steve.boot.launch.model.ArticleVO;
 import com.steve.boot.launch.service.ArticleService;
 import org.springframework.stereotype.Controller;
@@ -18,7 +21,11 @@ public class TemplateController {
     ArticleService articleService;
 
     @GetMapping("/articles")
+    @ModelView
     public String index(Model model){
+        if(1==1) {
+            throw new CustomException(CustomExceptionType.USER_INPUT_ERROR);
+        }
         List<ArticleVO> articles = articleService.getAll();
         model.addAttribute("articles", articles);
         return "index";

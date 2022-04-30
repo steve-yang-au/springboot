@@ -6,6 +6,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class WebExceptionHandler {
@@ -33,7 +36,7 @@ public class WebExceptionHandler {
     }
     @ExceptionHandler(BindException.class)
     @ResponseBody
-    public AjaxReponse BindException(BindException e){
+    public AjaxReponse bindException(BindException e){
         FieldError fieldError = e.getBindingResult().getFieldError();
         return AjaxReponse.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR), fieldError.getDefaultMessage());
     }
@@ -44,5 +47,16 @@ public class WebExceptionHandler {
 
         //TODO put unexpected error message save to file system or database
         return AjaxReponse.error(new CustomException(CustomExceptionType.OTHER_ERROR));
+    }
+
+    @ExceptionHandler(ModelViewException.class)
+    public ModelAndView handleModelAndView(HttpServletRequest request, ModelViewException e){
+        ModelAndView modelAndView = new ModelAndView();
+
+        modelAndView.addObject("exception", e);
+        modelAndView.addObject("url",request.getRequestURL());
+        modelAndView.setViewName("error");
+
+        return modelAndView;
     }
 }
