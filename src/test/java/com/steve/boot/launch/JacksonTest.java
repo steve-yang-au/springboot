@@ -21,7 +21,6 @@ public class JacksonTest {
                 .content("testing for Jackson")
                 .author("Joss")
                 .createTime(new Date())
-                .readers(list)
                 .build();
 
         ObjectMapper mapper = new ObjectMapper();

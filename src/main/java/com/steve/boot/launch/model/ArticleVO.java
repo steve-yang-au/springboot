@@ -22,7 +22,7 @@ public class ArticleVO {
     private Long id;
     private String title;
     private String content;
-    @JsonProperty("auther")
+    //@JsonProperty("auther")
     private String author;
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss", timezone = "GMT+10")
     private Date createTime;
