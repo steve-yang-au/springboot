@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-@ImportResource(locations = "classpath:beans.xml")
+@ImportResource(locations = "classpath:otherConfig/beans.xml")
 @MapperScan(basePackages = {"com.steve.boot.launch.mapper"})
 @EnableJpaAuditing
 @ServletComponentScan

@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Data
 @Configuration
-@PropertySource(value = "classpath:employee.properties")
+@PropertySource(value = "classpath:otherConfig/employee.properties")
 public class Employee {
     @Value("#{'${employee.names}'.split('\\|')}")
     private List<String> names;
