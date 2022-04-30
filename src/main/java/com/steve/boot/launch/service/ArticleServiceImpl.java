@@ -9,6 +9,7 @@ import com.steve.boot.launch.model.ArticleVO;
 import com.steve.boot.launch.utils.DozerUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -42,9 +43,10 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     public void updateArticle(ArticleVO articleVO) {
         Article article = articleMapper.getArticle(articleVO.getId());
-        if(article == null) {
-            throw new CustomException(CustomExceptionType.USER_INPUT_ERROR, "there is no article id for update");
-        }
+//        if(article == null) {
+//            throw new CustomException(CustomExceptionType.USER_INPUT_ERROR, "there is no article id for update");
+//        }
+        Assert.notNull(article,"sorry,this article has been deleted,updating is not available.");
         Article a = new Article();
         //dozerMapper.map(source, destination);
         dozerMapper.map(article, a);

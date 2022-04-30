@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -32,14 +33,14 @@ public class ArticleController {
     }
 
     @PostMapping("/articles")
-    public AjaxReponse addArticle(@RequestBody ArticleVO articleVO){
+    public AjaxReponse addArticle(@Valid @RequestBody ArticleVO articleVO){
         articleService.saveArticle(articleVO);
         log.info("get a article:" + articleVO);
         return  AjaxReponse.success();
     }
 
     @PutMapping("/articles/{id}")
-    public AjaxReponse updateArticle(@RequestBody ArticleVO articleVO){
+    public AjaxReponse updateArticle(@Valid @RequestBody ArticleVO articleVO){
         articleService.updateArticle(articleVO);
         log.info("get a article:" + articleVO);
         return AjaxReponse.success();

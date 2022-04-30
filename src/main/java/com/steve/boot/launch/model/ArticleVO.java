@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +22,7 @@ import java.util.List;
 public class ArticleVO {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long id;
+    @NotEmpty(message = "the title must not empty.")
     private String title;
     private String content;
     //@JsonProperty("auther")
