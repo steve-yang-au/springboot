@@ -1,4 +1,4 @@
-package com.steve.boot.launch.config;
+package com.steve.boot.launch.config.servletFilter;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

@@ -1,14 +1,14 @@
-package com.steve.boot.launch.config.event;
+package com.steve.boot.launch.config.springEvent;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 
 @Slf4j
-public class Listener3 implements ApplicationListener<MyEvent> {
+public class Listener1 implements ApplicationListener<MyEvent> {
     @Override
     public void onApplicationEvent(MyEvent event) {
         log.info(String.format("%s listened an event: %s.",
-                Listener3.class.getName(),
+                Listener1.class.getName(),
                 event.getSource()));
     }
 }

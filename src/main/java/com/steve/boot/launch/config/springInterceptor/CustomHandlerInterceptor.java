@@ -1,4 +1,4 @@
-package com.steve.boot.launch.config;
+package com.steve.boot.launch.config.springInterceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

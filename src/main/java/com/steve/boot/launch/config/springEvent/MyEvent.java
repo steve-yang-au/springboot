@@ -1,4 +1,4 @@
-package com.steve.boot.launch.config.event;
+package com.steve.boot.launch.config.springEvent;
 
 import org.springframework.context.ApplicationEvent;
 

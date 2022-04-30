@@ -1,6 +1,6 @@
 package com.steve.boot.launch;
 
-import com.steve.boot.launch.config.event.Listener1;
+import com.steve.boot.launch.config.springEvent.Listener1;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

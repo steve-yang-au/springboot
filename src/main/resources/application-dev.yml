@@ -42,4 +42,4 @@ jasypt:
 
 context:
   listener:
-    classes: com.steve.boot.launch.config.event.Listener3
+    classes: com.steve.boot.launch.config.springEvent.Listener3

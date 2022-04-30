@@ -1,4 +1,4 @@
-package com.steve.boot.launch.config.event;
+package com.steve.boot.launch.config.springEvent;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
