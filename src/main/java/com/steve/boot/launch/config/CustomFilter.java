@@ -7,7 +7,7 @@ import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 @Slf4j
-//@WebFilter(filterName = "CustomFilter", urlPatterns = {"/*"})
+//@WebFilter(filterName = "CustomFilter", urlPatterns = {"/thymeleaf/*"})
 public class CustomFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

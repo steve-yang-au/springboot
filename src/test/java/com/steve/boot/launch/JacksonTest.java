@@ -27,7 +27,5 @@ public class JacksonTest {
         String json = mapper.writeValueAsString(article);
         System.out.println(json);
 
-        Article a = mapper.readValue("{\"title\":\"hha\",\"content\":\"testing for Jackson\",\"createTime\":\"11/04/2022 01:29:30\",\"readers\":[{\"name\":\"Paige\",\"age\":23},{\"name\":\"Buck\",\"age\":24}],\"auther\":\"Joss\"}", Article.class);
-        System.out.println(a);
     }
 }
