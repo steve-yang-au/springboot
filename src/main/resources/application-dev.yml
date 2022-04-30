@@ -1,11 +1,27 @@
 server:
   port: 8888
+  http-port: 80
   tomcat:
     max-connections: 8192
     accept-count: 100
     threads:
       max: 200
       min-spare: 10
+  jetty:
+    threads:
+      acceptors: -1
+      selectors: -1
+      min: 8
+      max: 200
+  undertow:
+    threads:
+      io: 8
+      worker: 64
+
+  ssl:
+    key-store: classpath:otherConfig/steve-ssl-key.p12
+    key-store-type: PKCS12
+    key-store-password: 123456
 
 
 spring:
