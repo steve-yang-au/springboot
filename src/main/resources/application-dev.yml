@@ -39,3 +39,7 @@ logging:
 jasypt:
   encryptor:
     password: 1234567
+
+context:
+  listener:
+    classes: com.steve.boot.launch.config.event.Listener3
