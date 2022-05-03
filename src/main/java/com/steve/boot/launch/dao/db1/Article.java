@@ -32,11 +32,11 @@ public class Article {
     @Column(nullable = false, length = 32)
     private String author;
 
-    @Column(nullable = false)
+    @Column(name="create_time", nullable = false)
     @CreatedDate
     private Date createTime;
 
-    @Column(nullable = false)
+    @Column(name = "update_time", nullable = false)
     @LastModifiedDate
     private Date updateTime;
 }

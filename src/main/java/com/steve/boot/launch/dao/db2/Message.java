@@ -28,11 +28,11 @@ public class Message {
     @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
+    @Column(name="create_time", nullable = false)
     @CreatedDate
     private Date createTime;
 
-    @Column(nullable = false)
+    @Column(name = "update_time", nullable = false)
     @LastModifiedDate
     private Date updateTime;
 }
