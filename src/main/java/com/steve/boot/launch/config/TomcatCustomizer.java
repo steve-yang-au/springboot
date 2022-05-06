@@ -33,12 +33,9 @@ public class TomcatCustomizer {
                 context.addConstraint(constraint);
             }
         };
-        factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
-            @Override
-            public void customize(Connector connector) {
-                connector.setPort(Integer.parseInt("8888"));
+        factory.addConnectorCustomizers((connector) ->  {
+                connector.setPort(httpsPort);
                 connector.setProperty("maxConnections", "8192");
-            }
         });
 
         factory.addAdditionalTomcatConnectors(connector());

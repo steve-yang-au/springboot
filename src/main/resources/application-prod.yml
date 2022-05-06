@@ -1,7 +1,76 @@
 server:
   port: 8890
+  http-port: 80
+  tomcat:
+    max-connections: 8192
+    accept-count: 100
+    threads:
+      max: 200
+      min-spare: 10
+  jetty:
+    threads:
+      acceptors: -1
+      selectors: -1
+      min: 8
+      max: 200
+  undertow:
+    threads:
+      io: 8
+      worker: 64
+
+  ssl:
+    key-store: classpath:otherConfig/steve-ssl-key.p12
+    key-store-type: PKCS12
+    key-store-password: 123456
+
 
 spring:
   jackson:
     date-format: "yyyy-MM-dd HH:mm:ss"
     time-zone: "GMT+10"
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db1
+    username: root
+    password: 123456
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: validate
+    database: mysql
+    show-sql: true
+
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    enabled: true
+    encoding: utf-8
+    excluded-view-names:
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.steve.boot.launch: debug
+  pattern:
+    console: '%red(%d{yyyy-MM-dd HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{10}) - %cyan(%msg%n)'
+    file: '%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger : %msg%n'
+  file:
+    path: C:\Users\Steve\IdeaProjects\logs
+    name: C:\Users\Steve\IdeaProjects\logs\boot-launch.log
+    max-size: 10MB
+    max-history: 10
+
+jasypt:
+  encryptor:
+    password: 1234567
+
+context:
+  listener:
+    classes: com.steve.boot.launch.config.springEvent.Listener3
