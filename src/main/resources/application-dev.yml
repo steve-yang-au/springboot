@@ -39,6 +39,24 @@ spring:
       ddl-auto: validate
     database: mysql
     show-sql: true
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 5000
+#    sentinel:
+#      master: my-master
+#      nodes: 127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381
+#    cluster: #集群模式配置
+#      nodes: 127.0.0.1:16379,127.0.0.1:16380,127.0.0.1:16381,127.0.0.1:16382,127.0.0.1:16383,127.0.0.1:16384
+#      max-redirects: 3  # 重定向的最大次数
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
 
   thymeleaf:
     cache: false
