@@ -5,6 +5,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -14,6 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @MapperScan(basePackages = {"com.steve.boot.launch.dao.mapper"})
 @EnableJpaAuditing
 @ServletComponentScan
+@EnableCaching
 public class BootLaunchApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(BootLaunchApplication.class, args);

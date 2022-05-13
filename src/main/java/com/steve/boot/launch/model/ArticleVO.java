@@ -10,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +21,11 @@ import java.util.List;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Schema(description = "data structure of an article ")
-public class ArticleVO {
+public class ArticleVO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -8985545025228238754L;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Long id;
     @NotEmpty(message = "the title must not empty.")

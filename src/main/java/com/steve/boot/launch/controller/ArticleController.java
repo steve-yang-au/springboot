@@ -39,7 +39,7 @@ public class ArticleController {
         return  AjaxReponse.success();
     }
 
-    @PutMapping("/articles/{id}")
+    @PutMapping("/articles")
     public AjaxReponse updateArticle(@Valid @RequestBody ArticleVO articleVO){
         articleService.updateArticle(articleVO);
         log.info("get a article:" + articleVO);
