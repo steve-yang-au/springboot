@@ -1,4 +1,4 @@
-package com.steve.boot.launch.mapper;
+package com.steve.boot.launch.dao.mapper;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

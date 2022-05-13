@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @ImportResource(locations = "classpath:otherConfig/beans.xml")
-@MapperScan(basePackages = {"com.steve.boot.launch.mapper"})
+@MapperScan(basePackages = {"com.steve.boot.launch.dao.mapper"})
 @EnableJpaAuditing
 @ServletComponentScan
 public class BootLaunchApplication {

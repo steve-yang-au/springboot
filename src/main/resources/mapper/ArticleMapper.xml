@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.steve.boot.launch.mapper.ArticleMapper">
+<mapper namespace="com.steve.boot.launch.dao.mapper.ArticleMapper">
     <insert
             id="saveArticle"
-            parameterType="com.steve.boot.launch.mapper.Article"
+            parameterType="com.steve.boot.launch.dao.mapper.Article"
             flushCache="true"
             statementType="PREPARED"
             keyProperty="id"
@@ -17,7 +17,7 @@
 
     <update
             id="updateArticle"
-            parameterType="com.steve.boot.launch.mapper.Article"
+            parameterType="com.steve.boot.launch.dao.mapper.Article"
             flushCache="true"
             statementType="PREPARED"
             timeout="20">
@@ -46,7 +46,7 @@
             timeout="10"
             fetchSize="256"
             statementType="PREPARED"
-            resultType="com.steve.boot.launch.mapper.Article">
+            resultType="com.steve.boot.launch.dao.mapper.Article">
         select id,title,content,author,create_time,update_time from Article
         where id = #{id}
     </select>
@@ -59,7 +59,7 @@
             timeout="10"
             fetchSize="256"
             statementType="PREPARED"
-            resultType="com.steve.boot.launch.mapper.Article">
+            resultType="com.steve.boot.launch.dao.mapper.Article">
         select id,title,content,author,create_time,update_time from Article
     </select>
 

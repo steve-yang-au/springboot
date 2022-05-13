@@ -1,7 +1,7 @@
 package com.steve.boot.launch;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.steve.boot.launch.mapper.Article;
+import com.steve.boot.launch.dao.mapper.Article;
 import com.steve.boot.launch.model.Reader;
 import org.junit.jupiter.api.Test;
 
