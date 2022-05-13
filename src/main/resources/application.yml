@@ -4,6 +4,6 @@ spring:
 
 caching:
   ttlmap:
-    article: 10
+    article: 60
     user_detail: 20
     yyy: 50
