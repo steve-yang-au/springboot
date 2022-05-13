@@ -31,7 +31,6 @@ spring:
       cache-null-values: true   # 缓存null，防止缓存穿透
       use-key-prefix: true  # 是否使用缓存前缀
       key-prefix: "boot-launch:"  # 缓存前缀，缓存按应用分类
-      time-to-live: 3600  # 缓存到期时间，默认不主动删除永远不到期
     ehcache:
       config: classpath:ehcache/ehcache.xml
   jackson:

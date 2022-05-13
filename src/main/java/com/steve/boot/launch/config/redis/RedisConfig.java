@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.cache.RedisCacheWriter;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 
+import javax.annotation.Resource;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,26 +20,17 @@ import java.util.Map;
 @ConfigurationProperties(prefix = "caching")  //application.yml配置前缀
 public class RedisConfig {
 
-    //11.4章节代码，不是本节内容
-    @Bean
-    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        RedisTemplate redisTemplate = new RedisTemplate();
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
-        redisTemplate.afterPropertiesSet();
-        return redisTemplate;
-    }
+    @Resource
+    RedisProperties redisProperties;
 
-
-    //从这里开始改造
     //自定义redisCacheManager
     @Bean
     public RedisCacheManager redisCacheManager(RedisTemplate redisTemplate) {
-        RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisTemplate.getConnectionFactory());
 
+        RedisCacheWriter redisCacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisTemplate.getConnectionFactory());
         RedisCacheManager redisCacheManager = new RedisCacheManager(redisCacheWriter,
                 this.buildRedisCacheConfigurationWithTTL(redisTemplate, RedisCacheConfiguration.defaultCacheConfig().getTtl().getSeconds()),  //默认的redis缓存配置
                 this.getRedisCacheConfigurationMap(redisTemplate)); //针对每一个cache做个性化缓存配置
-
         return  redisCacheManager;
     }
 
@@ -59,9 +50,23 @@ public class RedisConfig {
         return redisCacheConfigurationMap;
     }
 
-    //根据传参构建缓存配置
+    /**
+     *
+     * 根据传参构建缓存配置
+     * because the fields of RedisCacheConfiguration are "final", so we can only build its object once, any build by
+     * its reference will be failed.
+     */
     private RedisCacheConfiguration buildRedisCacheConfigurationWithTTL(RedisTemplate redisTemplate,Long ttl){
-        return  RedisCacheConfiguration.defaultCacheConfig()
+        if(redisProperties.getUseKeyPrefix() && !redisProperties.getCacheNullValues()){
+            return RedisCacheConfiguration.defaultCacheConfig()
+                    .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisTemplate.getValueSerializer()))
+                    .entryTtl(Duration.ofSeconds(ttl)).prefixCacheNameWith(redisProperties.getKeyPrefix()).disableCachingNullValues();
+        }else if(redisProperties.getUseKeyPrefix() ){
+            return RedisCacheConfiguration.defaultCacheConfig()
+                    .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisTemplate.getValueSerializer()))
+                    .entryTtl(Duration.ofSeconds(ttl)).prefixCacheNameWith(redisProperties.getKeyPrefix());
+        }
+        return RedisCacheConfiguration.defaultCacheConfig()
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(redisTemplate.getValueSerializer()))
                 .entryTtl(Duration.ofSeconds(ttl));
     }
