@@ -5,6 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.integration.redis.util.RedisLockRegistry;
 
+/**
+ * there are 2 ways to get a Rest-based lock:
+ * 1. RedisLockRegistry是spring-integration-redis中提供redis分布式锁实现类
+ * 2. 基于Redisson实现分布式锁原理（Redission是一个独立的redis客户端，是与Jedis、Lettuce同级别的存在）
+ */
 @Configuration
 public class RedisLockConfig {
 
