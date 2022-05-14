@@ -62,7 +62,7 @@ public class ArticleServiceImpl implements ArticleService{
         a.setUpdateTime(new Date());
         articleMapper.updateArticle(a);
     }
-    @Cacheable(value=CACHE_OBJECT, key = "#id")
+    @Cacheable(value=CACHE_OBJECT, key = "#id", sync = true)
     @Override
     public ArticleVO getArticle(Long id) {
         Article article = articleMapper.getArticle(id);
@@ -72,7 +72,7 @@ public class ArticleServiceImpl implements ArticleService{
             return null;
         }
     }
-    @Cacheable(value = CACHE_OBJECT,key = CACHE_LIST_KEY)
+    @Cacheable(value = CACHE_OBJECT,key = CACHE_LIST_KEY, sync = true)
     @Override
     public List<ArticleVO> getAll() {
         List<Article> articles = articleMapper.getAll();
