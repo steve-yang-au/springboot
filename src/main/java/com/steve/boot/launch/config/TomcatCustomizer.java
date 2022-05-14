@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class TomcatCustomizer {
-    @Value("${server.http-port}")
+    @Value("${server.httpPort}")
     private int httpPort;
     @Value("${server.port}")
     private int httpsPort;
@@ -36,7 +36,7 @@ public class TomcatCustomizer {
         factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
             @Override
             public void customize(Connector connector) {
-                connector.setPort(Integer.parseInt("8888"));
+                connector.setPort(httpsPort);
                 connector.setProperty("maxConnections", "8192");
             }
         });
