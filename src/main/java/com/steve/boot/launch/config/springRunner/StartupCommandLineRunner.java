@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class StartupCommandLineRunner implements CommandLineRunner {
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         log.info("CommandLineRunner got parameters: {}", Arrays.toString(args));
     }
 }

@@ -1,16 +1,17 @@
 package com.steve.boot.launch.exception;
 
 public class CustomException extends RuntimeException{
-    private int code;
-    private String message;
-    private CustomException(){}
-    public CustomException(CustomExceptionType enumType){
-        this.code = enumType.getCode();
-        this.message = enumType.getDescription();
-    }
-    public CustomException(CustomExceptionType enumType, String message){
-        this.code = enumType.getCode();
+    private final int code;
+    private final String message;
+    private CustomException(int code, String message){
+        this.code = code;
         this.message = message;
+    }
+    public static CustomException defaultCustomException(CustomExceptionType enumType){
+        return new CustomException(enumType.getCode(), enumType.getDescription());
+    }
+    public CustomException defaultCustomException(CustomExceptionType enumType, String message){
+        return new CustomException(enumType.getCode(), message);
     }
 
     public int getCode(){return code;}

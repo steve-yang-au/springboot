@@ -24,7 +24,7 @@ public class TemplateController {
     @ModelView
     public String index(Model model){
         if(1==1) {
-            throw new CustomException(CustomExceptionType.USER_INPUT_ERROR);
+            throw CustomException.defaultCustomException(CustomExceptionType.USER_INPUT_ERROR);
         }
         List<ArticleVO> articles = articleService.getAll();
         model.addAttribute("articles", articles);

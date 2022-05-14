@@ -26,19 +26,19 @@ public class WebExceptionHandler {
     @ResponseBody
     public AjaxReponse handleBindException(MethodArgumentNotValidException e){
         FieldError fieldError = e.getBindingResult().getFieldError();
-        return AjaxReponse.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR), fieldError.getDefaultMessage());
+        return AjaxReponse.error(CustomException.defaultCustomException(CustomExceptionType.USER_INPUT_ERROR), fieldError.getDefaultMessage());
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseBody
     public AjaxReponse handleIllegalArgumentExceptionException(IllegalArgumentException e){
-        return AjaxReponse.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR),e.getMessage());
+        return AjaxReponse.error(CustomException.defaultCustomException(CustomExceptionType.USER_INPUT_ERROR),e.getMessage());
     }
     @ExceptionHandler(BindException.class)
     @ResponseBody
     public AjaxReponse bindException(BindException e){
         FieldError fieldError = e.getBindingResult().getFieldError();
-        return AjaxReponse.error(new CustomException(CustomExceptionType.USER_INPUT_ERROR), fieldError.getDefaultMessage());
+        return AjaxReponse.error(CustomException.defaultCustomException(CustomExceptionType.USER_INPUT_ERROR), fieldError.getDefaultMessage());
     }
 
     @ExceptionHandler(Exception.class)
@@ -46,7 +46,7 @@ public class WebExceptionHandler {
     public AjaxReponse exception(Exception e){
 
         //TODO put unexpected error message save to file system or database
-        return AjaxReponse.error(new CustomException(CustomExceptionType.OTHER_ERROR));
+        return AjaxReponse.error(CustomException.defaultCustomException(CustomExceptionType.OTHER_ERROR));
     }
 
     @ExceptionHandler(ModelViewException.class)

@@ -11,7 +11,7 @@ import java.util.Arrays;
 @Slf4j
 public class StartupApplicationRunner implements ApplicationRunner {
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         log.info("ApplicationRunner got parameter names: {}", args.getOptionNames() );
         log.info("ApplicationRunner got parameter values: {}", args.getOptionValues("age"));
         log.info("ApplicationRunner got parameter {}", Arrays.toString(args.getSourceArgs()));

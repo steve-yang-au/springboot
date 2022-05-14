@@ -40,13 +40,13 @@ public class RedisConfig {
     //根据ttlmap的属性装配结果，个性化RedisCacheConfiguration
     private Map<String, RedisCacheConfiguration> getRedisCacheConfigurationMap(RedisTemplate redisTemplate) {
         Map<String, RedisCacheConfiguration> redisCacheConfigurationMap = new HashMap<>();
-
-        for(Map.Entry<String, Long> entry : ttlmap.entrySet()){
-            String cacheName = entry.getKey();
-            Long ttl = entry.getValue();
-            redisCacheConfigurationMap.put(cacheName,this.buildRedisCacheConfigurationWithTTL(redisTemplate,ttl));
+        if(ttlmap != null){
+            for(Map.Entry<String, Long> entry : ttlmap.entrySet()){
+                String cacheName = entry.getKey();
+                Long ttl = entry.getValue();
+                redisCacheConfigurationMap.put(cacheName,this.buildRedisCacheConfigurationWithTTL(redisTemplate,ttl));
+            }
         }
-
         return redisCacheConfigurationMap;
     }
 
