@@ -34,6 +34,13 @@ public class WebExceptionHandler {
     public AjaxReponse handleIllegalArgumentExceptionException(IllegalArgumentException e){
         return AjaxReponse.error(CustomException.defaultCustomException(CustomExceptionType.USER_INPUT_ERROR),e.getMessage());
     }
+
+    @ExceptionHandler(IllegalStateException.class)
+    @ResponseBody
+    public AjaxReponse handleIllegalStateExceptionException(IllegalStateException e){
+        return AjaxReponse.error(CustomException.defaultCustomException(CustomExceptionType.OTHER_ERROR),"request time out.");
+    }
+
     @ExceptionHandler(BindException.class)
     @ResponseBody
     public AjaxReponse bindException(BindException e){
