@@ -1,3 +1,6 @@
+web:
+  upload-path: E:/data/
+
 server:
   port: 8888
   httpPort: 80
@@ -65,7 +68,6 @@ spring:
         max-wait: -1
         max-idle: 8
         min-idle: 0
-
   thymeleaf:
     cache: false
     check-template-location: true
@@ -75,6 +77,9 @@ spring:
     mode: HTML5
     prefix: classpath:/templates/
     suffix: .html
+  web:
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
