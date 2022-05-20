@@ -49,6 +49,20 @@ spring:
     mode: HTML5
     prefix: classpath:/templates/
     suffix: .html
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: johnniee.peterson@gmail.com
+    password: Burwood45$
+    protocol: smtp
+    default-encoding: utf-8
+    properties:
+      mail.smtp.auth: true
+      mail.transport.protocol: smtp
+      mail.smtp.starttls.enable: true
+      mail.debug: tre
+      mail.display.sendmail: Java
+      mail.display.sendname: Spring Boot Guide Email
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
