@@ -18,10 +18,10 @@ server:
       io: 8
       worker: 64
 
-  ssl:
-    key-store: classpath:otherConfig/steve-ssl-key.p12
-    key-store-type: PKCS12
-    key-store-password: 123456
+#  ssl:
+#    key-store: classpath:otherConfig/steve-ssl-key.p12
+#    key-store-type: PKCS12
+#    key-store-password: 123456
 
 
 spring:
@@ -50,6 +50,21 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 
+  security:
+    user:
+      name: steve  #用户名
+      password: 123456  #密码
+      roles:
+        - ACTUATOR_ADMIN #角色名称要与上面的代码对应
+  boot:
+    admin:
+      client:
+        url: http://localhost:8081
+        instance:
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
@@ -66,3 +81,19 @@ jasypt:
 context:
   listener:
     classes: com.steve.boot.launch.config.springEvent.Listener3
+
+info:
+  app-name: spring-boot-actuator-demo
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#      base-path: /steve
+#      path-mapping:
+#        health: healthcheck
+
