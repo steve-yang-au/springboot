@@ -50,6 +50,19 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
 
+  jms:
+    pub-sub-domain: true
+
+  activemq:
+    user: admin
+    password: admin
+    broker-url: tcp://localhost:61616
+    in-memory: false
+    pool:
+      enabled: true
+      max-connections: 50
+    packages:
+      trust-all: true   #是否信任所有包，信任后所有包内的对象均可序列化传输
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
